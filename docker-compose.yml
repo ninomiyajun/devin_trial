@@ -1,0 +1,28 @@
+version: '3.9'  # 推奨：明示的に記載
+
+services:
+  db:
+    image: mysql:8.0
+    # restart: unless-stopped  # 安定性向上のため追加
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: app_development
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"  # ローカルから接続確認したい場合に便利（任意）
+
+  web:
+    build: .
+    restart: unless-stopped
+    environment:
+      RAILS_ENV: development
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
