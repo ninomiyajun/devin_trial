@@ -1,4 +1,4 @@
-FROM ruby:3.3.4
+FROM ruby:3.4
 
 # Yarn GPG鍵の登録
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /usr/share/keyrings/yarn-archive-keyring.gpg \
@@ -15,7 +15,7 @@ WORKDIR ${APP_ROOT}
 
 # 先にGemfileだけコピーしてbundle installキャッシュを効かせる
 COPY ./Gemfile ${APP_ROOT}/Gemfile
-COPY ./Gemfile.lock ${APP_ROOT}/Gemfile.lock
+# COPY ./Gemfile.lock ${APP_ROOT}/Gemfile.lock
 RUN bundle install
 
 # 残りのアプリケーションコードをコピー
@@ -32,7 +32,7 @@ COPY . ${APP_ROOT}
 # # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 
 # # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
-# ARG RUBY_VERSION=3.3.4
+# ARG RUBY_VERSION=3.4
 # FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
 # # Rails app lives here
