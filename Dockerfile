@@ -1,4 +1,4 @@
-FROM ruby:3.3.4
+FROM ruby:3.4
 
 # Yarn GPG鍵の登録
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /usr/share/keyrings/yarn-archive-keyring.gpg \
