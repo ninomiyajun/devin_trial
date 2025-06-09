@@ -86,6 +86,12 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Run database migrations
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: mysql2://root:password@127.0.0.1:3306/app_test
+        run: bin/rails db:migrate
+
       - name: Run tests
         env:
           RAILS_ENV: test
