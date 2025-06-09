@@ -15,7 +15,7 @@ WORKDIR ${APP_ROOT}
 
 # 先にGemfileだけコピーしてbundle installキャッシュを効かせる
 COPY ./Gemfile ${APP_ROOT}/Gemfile
-COPY ./Gemfile.lock ${APP_ROOT}/Gemfile.lock
+# COPY ./Gemfile.lock ${APP_ROOT}/Gemfile.lock
 RUN bundle install
 
 # 残りのアプリケーションコードをコピー
