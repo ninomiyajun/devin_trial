@@ -1,0 +1,6 @@
+create_table "memo_tags", force: :cascade do |t|
+  t.string "name", limit: 100, null: false
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.index [ "name" ], name: "index_memo_tags_on_name", unique: true
+end
