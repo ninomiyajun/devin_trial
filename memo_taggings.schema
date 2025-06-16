@@ -1,0 +1,9 @@
+create_table "memo_taggings", force: :cascade do |t|
+  t.bigint "memo_id", null: false
+  t.bigint "memo_tag_id", null: false
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+  t.index [ "memo_id", "memo_tag_id" ], name: "unique_memo_tagging", unique: true
+  t.index [ "memo_id" ], name: "index_memo_taggings_on_memo_id"
+  t.index [ "memo_tag_id" ], name: "index_memo_taggings_on_memo_tag_id"
+end
